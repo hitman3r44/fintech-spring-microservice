@@ -9,7 +9,7 @@
         <version>2.5.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.rishabh</groupId>
+    <groupId>com.wolverinesolution</groupId>
     <artifactId>fintech-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>fintech-app</name>
