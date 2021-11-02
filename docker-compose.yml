@@ -1,0 +1,87 @@
+version: '3.1'
+services :
+#  app:
+#    build:
+#      context: .
+#    ports:
+#      - 5005:5005
+#      - 8081:8081
+#    volumes:
+#      - .:/app
+#    command: [ "gradle", "bootRun" ]
+#  app:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+#    volumes:
+#      - ./:/app
+#    working_dir: /app
+#    command: sh run.sh
+#    ports:
+#      - 8081:8080
+#    networks:
+#      - local
+  db_security:
+    image: mysql
+    container_name: 'db_security'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fintech_security
+      MYSQL_USER: fintech_security
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - local
+  adminer_security:
+    image: adminer
+    container_name: 'adminer_security'
+    restart: always
+    depends_on:
+      - db_security
+    ports:
+      - 1234:8080
+    networks:
+      - local
+
+  db_landing:
+    image: mysql
+    container_name: 'db_landing'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fintech_landing
+      MYSQL_USER: fintech_landing
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    networks:
+      - local
+  adminer_landing:
+    image: adminer
+    container_name: 'adminer_landing'
+    restart: always
+    depends_on:
+      - db_landing
+    ports:
+      - 1235:8080
+    networks:
+      - local
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - local
+
+#Docker Networks
+networks:
+  local:
+    driver: bridge
