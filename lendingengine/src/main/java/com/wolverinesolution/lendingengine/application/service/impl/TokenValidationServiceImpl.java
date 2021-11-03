@@ -30,8 +30,13 @@ public class TokenValidationServiceImpl implements TokenValidationService {
         httpHeaders.add("Authorization",token);
         HttpEntity httpEntity = new HttpEntity(httpHeaders);
 
-        ResponseEntity<String> response = restTemplate
-                .exchange(securityContextBasedURL+"/user/validate", HttpMethod.POST,httpEntity,String.class);
+        ResponseEntity<String> response;
+
+        try {
+            response = restTemplate.exchange(securityContextBasedURL+"/user/validate", HttpMethod.POST,httpEntity,String.class);
+        }catch (RuntimeException runtimeException){
+            throw new RuntimeException("Invalid Token");
+        }
         if(response.getStatusCode().equals(HttpStatus.OK)){
             return userRepository.findById(response.getBody())
                     .orElseThrow(()->new UserNotFoundException(response.getBody()));

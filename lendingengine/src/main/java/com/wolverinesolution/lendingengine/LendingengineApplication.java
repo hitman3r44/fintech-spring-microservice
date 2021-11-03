@@ -4,6 +4,8 @@ import com.github.javafaker.Faker;
 import com.wolverinesolution.lendingengine.domain.model.Balance;
 import com.wolverinesolution.lendingengine.domain.model.User;
 import com.wolverinesolution.lendingengine.domain.repository.UserRepository;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.stream.IntStream;
 
 @SpringBootApplication
+//@OpenAPIDefinition(info = @Info(title = "LandingEngine API", version = "1.0", description = "LandingEngine Information"))
 @EnableSwagger2
 public class LendingengineApplication implements CommandLineRunner {
     @Autowired
