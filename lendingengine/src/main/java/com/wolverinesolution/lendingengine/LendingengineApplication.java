@@ -29,8 +29,8 @@ public class LendingengineApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        userRepository.save(new User("Rishabh", "Rishabh", "Khandelwal", 25, "Software Developer", new Balance()));
-//        userRepository.save(new User("Rahul", "Rahul", "Agrawal", 26, "Software Developer", new Balance()));
+        userRepository.save(new User("Mindaugas", "Mindaugas", "Khandelwal", 25, "Software Developer", new Balance()));
+        userRepository.save(new User("John", "John", "Agrawal", 26, "Software Developer", new Balance()));
 //        userRepository.save(new User("Gaurav", "Gaurav", "Patidar", 25, "Software Developer", new Balance()));
 //        userRepository.save(new User("Munendra", "Munendra", "Dhayal", 23, "Business", new Balance()));
 //        userRepository.save(new User("Lekhu", "Lekhu", "Kumawat", 25, "Unemployed", new Balance()));
@@ -40,7 +40,7 @@ public class LendingengineApplication implements CommandLineRunner {
     @Bean
     CommandLineRunner runner(UserRepository userRepository) {
         Faker faker = new Faker();
-        return args -> IntStream.range(0, 100).forEach(i -> userRepository.save(new User(
+        return args -> IntStream.range(0, 10).forEach(i -> userRepository.save(new User(
                 faker.name().username(),
                 faker.name().firstName(),
                 faker.name().lastName(),

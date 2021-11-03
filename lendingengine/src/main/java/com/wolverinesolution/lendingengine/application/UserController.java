@@ -29,7 +29,6 @@ public class UserController {
         this.tokenValidationService = tokenValidationService;
     }
 
-//    @GetMapping(value = "/users")
     @GetMapping(value = "/users", produces= {MediaType.APPLICATION_JSON_VALUE})
     @ApiOperation(value="Return all Users with details", notes="This is a public API", response=List.class)
     @ApiResponse(code = HttpServletResponse.SC_OK, message = "Success")

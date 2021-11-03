@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ActiveProfiles(profiles = "test")
 public class LoanIntegrationTest {
 
-    private static final String RISHABH = "Rishabh";
+    private static final String JOHN = "John";
     private static final Gson GSON = new Gson();
 
     @Autowired
@@ -48,12 +48,12 @@ public class LoanIntegrationTest {
 
         List<LoanApplicationDTO> loanApplicationDTOS = GSON.fromJson(response.getBody(), new TypeToken<List<LoanApplicationDTO>>(){}.getType());
         assertEquals(1,loanApplicationDTOS.size());
-        assertEquals(loanApplicationDTOS.get(0).getBorrower().getUsername(),RISHABH);
+        assertEquals(loanApplicationDTOS.get(0).getBorrower().getUsername(), JOHN);
     }
 
     private HttpHeaders getHttpHeaders() {
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(HttpHeaders.AUTHORIZATION,RISHABH);
+        httpHeaders.add(HttpHeaders.AUTHORIZATION, JOHN);
         return httpHeaders;
     }
 }

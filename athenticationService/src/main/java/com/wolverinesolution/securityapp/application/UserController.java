@@ -35,4 +35,11 @@ public class UserController {
                 .orElseThrow(UserNotFoundException::new)
                 .getUsername();
     }
+
+    @GetMapping("/{userId}")
+    public String getUserById(@PathVariable("userId") String userId){
+        return userRepository.findById(userId)
+                .orElseThrow(UserNotFoundException::new)
+                .getUsername();
+    }
 }
