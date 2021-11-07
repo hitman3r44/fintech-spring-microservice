@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wolverinesolution</groupId>
-    <artifactId>securityapp</artifactId>
+    <artifactId>authenticationservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Authentication Service</name>
     <description>Authentication Service</description>
@@ -60,6 +60,14 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
+        </dependency>
+
+        <!--        #####   DevTool   #####-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>

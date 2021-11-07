@@ -40,7 +40,7 @@ public class LoanController {
     }
 
     @GetMapping(value = "/loan/requests")
-    public List<LoanApplication> getAllRequests(HttpServletRequest request){
+    public List<LoanApplication> getAllLoanRequests(HttpServletRequest request){
         tokenValidationService.validateToken(request.getHeader(HttpHeaders.AUTHORIZATION));
         return loanApplicationRepository.findAllByStatusEquals(Status.ONGOING);
     }
