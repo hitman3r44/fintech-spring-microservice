@@ -6,10 +6,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-class SecutiryApplication {
+public class SecurityApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SecutiryApplication.class, args);
+		SpringApplication.run(SecurityApplication.class, args);
 	}
 
 }

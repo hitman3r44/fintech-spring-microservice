@@ -2,6 +2,7 @@ package com.wolverinesolution.securityapp;
 
 import com.wolverinesolution.securityapp.user.model.User;
 import com.wolverinesolution.securityapp.user.repository.UserRepository;
+import org.jasypt.util.text.StrongTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,8 +21,12 @@ public class AuthenticationServiceApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		userRepository.save(new User("John", "12345"));
-		userRepository.save(new User("Mindaugas", "12345"));
+		StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
+		textEncryptor.setPassword("wolverine");
+		String encryptedPassword = textEncryptor.encrypt("12345");
+
+		userRepository.save(new User("John", encryptedPassword));
+		userRepository.save(new User("Mindaugas", encryptedPassword));
 	}
 
 }

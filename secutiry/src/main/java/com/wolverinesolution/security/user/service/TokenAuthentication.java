@@ -22,17 +22,32 @@ public class TokenAuthentication implements UserAuthenticationService{
     }
 
     @Override
-    public Optional<Optional<String>> login(String username, String password) {
-        return Optional.ofNullable(userReporsitory
+    public Optional<String> login(String username, String password) {
+        Optional<User> userDetails = userReporsitory.findByUserDetails_Username(username);
+
+        String generatedJWT = userReporsitory
                 .findByUserDetails_Username(username)
                 .filter(user->user.getUserDetails().getPassword().equals(password))
-                .map(user->tokenService.expiring(ImmutableMap.of("username",username)))
-        );
+                .map(user->tokenService.expiring(ImmutableMap.of("username",username))).get();
+
+
+        userDetails.get().getUserDetails().setJwtToken(generatedJWT);
+
+        userReporsitory.save(userDetails.get());
+
+        return Optional.of(generatedJWT);
+
+//        return Optional.of(userReporsitory
+//                .findByUserDetails_Username(username)
+//                .filter(user->user.getUserDetails().getPassword().equals(password))
+//                .map(user->tokenService.expiring(ImmutableMap.of("username",username)))
+//        );
     }
 
     @Override
     public User findByToken(String token) {
         Map<String,String> result = tokenService.verify(token);
-        return userReporsitory.findByUserDetails_Username(result.get("username")).get();
+//        return userReporsitory.findByUserDetails_Username(result.get("username")).get();
+        return userReporsitory.findByUserDetails_JwtToken(result.get("jwtToken")).get();
     }
 }

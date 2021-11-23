@@ -30,7 +30,8 @@ public class UserController {
     public String login(@RequestBody UserDetailsImpl userDetails){
         return userAuthenticationService
                 .login(userDetails.getUsername(),userDetails.getPassword())
-                .orElseThrow(()->new RuntimeException("Invalid login details")).get();
+                .orElseThrow(()->new RuntimeException("Invalid login details"));
+
     }
 
 }

@@ -7,16 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Collection;
+import java.util.UUID;
 
 @Entity
 public class UserDetailsImpl implements UserDetails {
 
     @Id
     @GeneratedValue
-    private long id;
+    private UUID id;
 
     private String username;
     private String password;
+    private String jwtToken;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -31,6 +33,14 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public String getJwtToken() {
+        return jwtToken;
+    }
+
+    public void setJwtToken(String jwtToken) {
+        this.jwtToken = jwtToken;
     }
 
     @Override

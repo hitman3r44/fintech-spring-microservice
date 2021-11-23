@@ -1,13 +1,14 @@
 package com.wolverinesolution.security.user.model;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 public class User {
 
     @Id
     @GeneratedValue
-    private long id;
+    private UUID id;
 
     public User(){
     }
@@ -20,7 +21,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private UserDetailsImpl userDetails;
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 

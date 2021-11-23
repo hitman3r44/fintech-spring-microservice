@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface UserReporsitory extends JpaRepository<User,Long> {
 
     Optional<User> findByUserDetails_Username(String username);
+    Optional<User> findByUserDetails_JwtToken(String username);
 }
