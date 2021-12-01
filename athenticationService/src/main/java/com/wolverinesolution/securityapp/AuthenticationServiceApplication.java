@@ -14,6 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class AuthenticationServiceApplication implements CommandLineRunner{
 	@Autowired
 	private UserRepository userRepository;
+	private final static String PASWORD_SALT ="wolverine";
+	private final static String PASWORD ="12345";
 
 	public static void main(String[] args) {
 		SpringApplication.run(AuthenticationServiceApplication.class, args);
@@ -22,8 +24,8 @@ public class AuthenticationServiceApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
-		textEncryptor.setPassword("wolverine");
-		String encryptedPassword = textEncryptor.encrypt("12345");
+		textEncryptor.setPassword(PASWORD_SALT);
+		String encryptedPassword = textEncryptor.encrypt(PASWORD);
 
 		userRepository.save(new User("John", encryptedPassword));
 		userRepository.save(new User("Mindaugas", encryptedPassword));
